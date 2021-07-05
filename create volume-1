@@ -1,0 +1,31 @@
+
+
+Note:After install & start docker:-
+
+step-0 service docker start
+step-0 service docker status 
+step-1 touch file1 file2
+step-2 ls
+step-3 vi dockerfile (create docker file)
+
+FROM ubuntu
+VOLUME ["/myvolume"]
+:wq
+
+step-4  docker build -t myimage . (create docker image)
+step-5  docker images (check images)
+step-6  docker run -it --name container1 myimage /bin/bash
+step-7  ls (see your directory exp-myvolume)
+step-8  cd myvolume
+step-9  touch file4 file5 file6
+step-10 exit 
+step-11 docker run -it --name container2 --privileged=true --volumes-from container1 ubuntu /bin/bash
+step-12 ls 
+step-13 cd myvolume
+step-14 ls
+step-15 exit
+step-16 docker start container1
+step-17 docker attach container1
+step-18 cd myvolume
+step-19 touch test1 test2
+step-20 ls
